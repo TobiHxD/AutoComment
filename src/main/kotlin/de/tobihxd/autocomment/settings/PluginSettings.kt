@@ -21,9 +21,6 @@ class PluginSettings : PersistentStateComponent<PluginSettings.State> {
         var model: String = "No model found",
 
         var detailLevel: String = "Kurz",
-
-        var showToolWindowOnStartup: Boolean = false,
-        var showNotifications: Boolean = true
     )
 
     private var state = State()

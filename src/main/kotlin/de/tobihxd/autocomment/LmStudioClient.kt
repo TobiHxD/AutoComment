@@ -1,5 +1,6 @@
 package de.tobihxd.autocomment;
 
+import com.intellij.ide.nls.NlsMessages
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.project.Project
 import de.tobihxd.autocomment.settings.PluginSettings
@@ -65,36 +66,7 @@ class LmStudioClient(project: Project) {
             put("model", settings.state.model)
             put(
                 "input",
-                """
-Analysiere die folgende Java-Methode.
-
-Erstelle eine JSON-Beschreibung des Javadocs mit folgendem Aufbau:
-
-{
-  "text": "<kurze Beschreibung der Methode in 1 Satz>",
-  "params": [
-    {
-      "name": "<Parametername>",
-      "description": "<kurze Beschreibung des Parameters>"
-    },
-    ...
-  ],
-  "returns": "<Beschreibung des Rückgabewerts, falls vorhanden, sonst leer>",
-  "throws": [
-    "<Liste der geworfenen Ausnahmen, falls vorhanden, sonst leer>"
-  ]
-}
-
-- Beschreibe den Zweck der Methode in 1 Satz.  
-- Dokumentiere nur relevante Parameter.  
-- Dokumentiere den Rückgabewert nur, wenn vorhanden.  
-- Dokumentiere nur deklarierte Exceptions.  
-- Vermeide Details zur internen Implementierung.  
-- Gib nur gültiges JSON zurück, ohne Javadoc oder sonstigen Text.
-
-Java-Code:
-$methodCode
-                """.trimIndent()
+                Messages.message("prompt.javadoc.generation.json") + "\n$methodCode".trimIndent()
             )
         }
 

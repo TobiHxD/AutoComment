@@ -97,27 +97,6 @@ class PluginSettingsToolWindowFactory : ToolWindowFactory {
         }
         addLabeledField("Detaillevel:", detailCombo)
 
-        val showWindowCheckbox = JCheckBox(
-            "ToolWindow beim Start anzeigen",
-            settings.state.showToolWindowOnStartup
-        )
-        showWindowCheckbox.alignmentX = Component.LEFT_ALIGNMENT
-        showWindowCheckbox.addActionListener {
-            settings.state.showToolWindowOnStartup = showWindowCheckbox.isSelected
-        }
-        panel.add(showWindowCheckbox)
-        panel.add(Box.createVerticalStrut(5))
-
-        val notificationsCheckbox = JCheckBox(
-            "Benachrichtigungen anzeigen",
-            settings.state.showNotifications
-        )
-        notificationsCheckbox.alignmentX = Component.LEFT_ALIGNMENT
-        notificationsCheckbox.addActionListener {
-            settings.state.showNotifications = notificationsCheckbox.isSelected
-        }
-        panel.add(notificationsCheckbox)
-
         panel.add(Box.createVerticalGlue())
 
         val content = ContentFactory.getInstance().createContent(panel, "", false)

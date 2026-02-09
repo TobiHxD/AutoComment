@@ -6,9 +6,12 @@
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
     <name>AutoComment</name>
+    <description>Generate JSON-based Javadocs using a local LLM</description>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor>Example</vendor>
+
+    <resource-bundle>META-INF.plugin.messages.MessagesBundle</resource-bundle>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
