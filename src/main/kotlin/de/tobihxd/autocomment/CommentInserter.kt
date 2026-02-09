@@ -61,7 +61,6 @@ class CommentInserter {
 
         sb.append(" */")
 
-        println(sb.toString())
         return sb.toString();
     }
 }
