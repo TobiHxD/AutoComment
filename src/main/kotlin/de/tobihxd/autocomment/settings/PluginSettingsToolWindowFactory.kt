@@ -3,6 +3,7 @@ package de.tobihxd.autocomment.settings;
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.ComboBox
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBLabel
@@ -11,6 +12,7 @@ import com.intellij.ui.content.ContentFactory
 import de.tobihxd.autocomment.LmStudioClient
 import java.awt.Component
 import java.awt.Dimension
+import java.util.Locale
 import javax.swing.*
 
 class PluginSettingsToolWindowFactory : ToolWindowFactory {
@@ -89,13 +91,21 @@ class PluginSettingsToolWindowFactory : ToolWindowFactory {
         }
         addLabeledField("Read Timeout (s):", readTimeoutSpinner)
 
-        val detailCombo = JComboBox(arrayOf("Kurz", "Präzis", "Ausführlich"))
+        val detailCombo = ComboBox(arrayOf("low", "middle", "high"))
         fitHeight(detailCombo)
         detailCombo.selectedItem = settings.state.detailLevel
         detailCombo.addActionListener {
             settings.state.detailLevel = detailCombo.selectedItem as String
         }
         addLabeledField("Detaillevel:", detailCombo)
+
+        val localeCombo = ComboBox(settings.state.localeList)
+        fitHeight(localeCombo)
+        localeCombo.selectedItem = settings.state.locale
+        localeCombo.addActionListener {
+            settings.state.locale = localeCombo.selectedItem as Locale
+        }
+        addLabeledField("Locale:", localeCombo)
 
         panel.add(Box.createVerticalGlue())
 

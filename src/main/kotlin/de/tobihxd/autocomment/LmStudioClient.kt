@@ -1,6 +1,5 @@
 package de.tobihxd.autocomment;
 
-import com.intellij.ide.nls.NlsMessages
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.project.Project
 import de.tobihxd.autocomment.settings.PluginSettings
@@ -61,13 +60,16 @@ class LmStudioClient(project: Project) {
      * Generiert einen kurzen Javadoc-Kommentar für die übergebene Methode.
      * Prüft den ProgressIndicator regelmäßig, um Abbruch zu ermöglichen.
      */
-    fun generateJavadocForMethod(methodCode: String, indicator: ProgressIndicator? = null): String? {
+    fun generateJavadocForMethod(methodCode: String,project: Project, indicator: ProgressIndicator? = null): String? {
         val requestJson = JSONObject().apply {
             put("model", settings.state.model)
             put(
                 "input",
-                Messages.message("prompt.javadoc.generation.json") + "\n$methodCode".trimIndent()
+                Messages.message("prompt.javadoc.generation.json", project) + "\n$methodCode".trimIndent()
             )
+            put("reasoning", JSONObject().apply {
+                put("effort", settings.state.detailLevel)
+            })
         }
 
         val body = requestJson.toString()

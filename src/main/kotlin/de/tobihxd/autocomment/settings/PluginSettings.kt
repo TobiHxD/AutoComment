@@ -5,6 +5,7 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.openapi.project.Project
+import java.util.Locale
 
 @State(
     name = "JavadocPluginSettings",
@@ -20,7 +21,9 @@ class PluginSettings : PersistentStateComponent<PluginSettings.State> {
         var readTimeoutSec: Int = 180,
         var model: String = "No model found",
 
-        var detailLevel: String = "Kurz",
+        var detailLevel: String = "low",
+        var localeList: Array<Locale> = arrayOf(Locale.ENGLISH, Locale.GERMAN),
+        var locale: Locale = if (Locale.getDefault() in localeList) Locale.getDefault() else Locale.ENGLISH,
     )
 
     private var state = State()

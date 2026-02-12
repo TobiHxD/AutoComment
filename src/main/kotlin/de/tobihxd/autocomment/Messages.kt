@@ -1,10 +1,20 @@
 package de.tobihxd.autocomment
 
-import com.intellij.AbstractBundle
-import org.jetbrains.annotations.PropertyKey
+import com.intellij.openapi.project.Project
+import de.tobihxd.autocomment.settings.PluginSettings
+import java.util.Locale
+import java.util.ResourceBundle
 
-object Messages : AbstractBundle("META-INF.plugin.messages.MessagesBundle") {
-    fun message(@PropertyKey(resourceBundle = "META-INF.plugin.messages.MessagesBundle") key: String, vararg params: Any): String {
-        return getMessage(key, *params)
+object Messages{
+    private const val BASE_NAME = "META-INF.plugin.messages.MessagesBundle"
+
+    fun message(key: String,project: Project, locale: Locale = PluginSettings.getInstance(project).state.locale, vararg params: Any): String {
+        println(locale)
+        val bundle = ResourceBundle.getBundle(BASE_NAME, locale)
+        return if (params.isEmpty()) {
+            bundle.getString(key)
+        } else {
+            String.format(bundle.getString(key), *params)
+        }
     }
 }

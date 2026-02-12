@@ -22,7 +22,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow
-                id="Javadoc Plugin Settings"
+                id="AutoComment Settings"
                 anchor="right"
                 factoryClass="de.tobihxd.autocomment.settings.PluginSettingsToolWindowFactory"
                 secondary="true"

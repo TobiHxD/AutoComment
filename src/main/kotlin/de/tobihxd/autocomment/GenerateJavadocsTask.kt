@@ -39,7 +39,7 @@ class GenerateJavadocsTask(
                 }
 
                 // LM Client Request (keine PSI-Operationen, kann normal laufen)
-                val comment = lmClient.generateJavadocForMethod(methodText, indicator)
+                val comment = lmClient.generateJavadocForMethod(methodText, project, indicator)
                     ?: continue
 
                 // --- Kommentar einfügen (WriteAction) ---
